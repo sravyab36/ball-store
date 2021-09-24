@@ -3,7 +3,7 @@
 backgroundColor = [255,255,255];
 
 // SOUNDS
-const sounds = Array.from({ length: 6 });
+const sounds = Array.from({ length: 8 });
 
 // OBJECTS
 const ball1 = {
@@ -12,6 +12,8 @@ const ball1 = {
     d: 400,
     xspeed: 1,
     yspeed: 2,
+    rightSound: sounds[0],
+    leftSound: sounds[1],
     fillColor: [255,255,255],
     strokeColor: [0,0,0],
     outlineWidth: 6,
@@ -24,6 +26,8 @@ const ball2 = {
     d: 300,
     xspeed: 2,
     yspeed: -1.5,
+    rightSound: sounds[2],
+    leftSound: sounds[3],
     fillColor: [255,255,255],
     strokeColor: [0,0,0],
     outlineWidth: 6,
@@ -36,6 +40,8 @@ const ball3 = {
     d: 150,
     xspeed: 2,
     yspeed: 3,
+    rightSound: sounds[4],
+    leftSound: sounds[5],
     fillColor: [255,255,255],
     strokeColor: [0,0,0],
     outlineWidth: 6,
@@ -48,6 +54,8 @@ const ball4 = {
     d: 200,
     xspeed: -1,
     yspeed: 2,
+    rightSound: sounds[6],
+    leftSound: sounds[7],
     fillColor: [255,255,255],
     strokeColor: [0,0,0],
     outlineWidth: 6,
@@ -60,6 +68,8 @@ const ball5 = {
     d: 100,
     xspeed: 4,
     yspeed: -3,
+    rightSound: sounds[0],
+    leftSound: sounds[1],
     fillColor: [255,255,255],
     strokeColor: [0,0,0],
     outlineWidth: 6,
@@ -162,7 +172,7 @@ function updateBall(ball){
         ball.xspeed = ball.yspeed;
         ball.yspeed = new_yspeed;
         ball.xspeed *= -1;
-        //ball.rightSound.play();
+        ball.rightSound.play();
         activateLine(rightEdge);
         activateBall(ball);
     } else if(ball.x - ball.d / 2 < leftEdge.x1 ){
@@ -170,7 +180,7 @@ function updateBall(ball){
         ball.xspeed = ball.yspeed;
         ball.yspeed = new_yspeed;
         ball.xspeed *= -1;
-        //ball.leftSound.play();
+        ball.leftSound.play();
         activateLine(leftEdge);
         activateBall(ball);
     } else if(ball.y - ball.d / 2 < topEdge.y1) {
@@ -178,6 +188,7 @@ function updateBall(ball){
         ball.yspeed = ball.xspeed;
         ball.xspeed = new_xspeed;
         ball.yspeed *= -1;
+        ball.rightSound.play();
         activateLine(topEdge);
         activateBall(ball);
     } else if(ball.y + ball.d / 2 > bottomEdge.y1) {
@@ -185,6 +196,7 @@ function updateBall(ball){
         ball.yspeed = ball.xspeed;
         ball.xspeed = new_xspeed;
         ball.yspeed *= -1;
+        ball.leftSound.play();
         activateLine(bottomEdge);
         activateBall(ball);
     }
@@ -196,7 +208,7 @@ function updateBall(ball){
 function preload(){
 
     sounds.forEach((sound, i) => {
-        sounds[i] = loadSound(`sounds/${i}.mp3`)
+        sounds[i] = loadSound(`sounds_old/${i}.mp3`)
     })
 
     console.log(sounds);
@@ -207,6 +219,10 @@ function preload(){
     ball2.leftSound = sounds[3];
     ball3.rightSound = sounds[4];
     ball3.leftSound = sounds[5];
+    ball4.rightSound = sounds[6];
+    ball4.leftSound = sounds[7];
+    ball5.rightSound = sounds[0];
+    ball5.leftSound = sounds[1];
 }
 
 // P5 DISPLAY
