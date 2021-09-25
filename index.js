@@ -208,7 +208,7 @@ function updateBall(ball){
 function preload(){
 
     sounds.forEach((sound, i) => {
-        sounds[i] = loadSound(`sounds_old/${i}.mp3`)
+        sounds[i] = loadSound(`sounds/${i}.mp3`)
     })
 
     console.log(sounds);
